@@ -1,4 +1,5 @@
 import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
+import MovieList from "./components/Movie/MovieList";
 
 function App() {
   const isLarge = useBreakpointValue({ base: false, lg: true });
@@ -19,7 +20,9 @@ function App() {
           Genre list
         </GridItem>
       </Show>
-      <GridItem area="main">Movie list</GridItem>
+      <GridItem area="main">
+        <MovieList />
+      </GridItem>
     </Grid>
   );
 }
