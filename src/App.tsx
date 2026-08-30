@@ -1,10 +1,26 @@
-import { Text } from "@chakra-ui/react";
+import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
 
 function App() {
+  const isLarge = useBreakpointValue({ base: false, lg: true });
   return (
-    <>
-      <Text>Test chakra</Text>
-    </>
+    <Grid
+      templateAreas={{
+        base: `"nav" "main"`,
+        lg: `"nav nav" "aside main"`,
+      }}
+      templateColumns={{
+        base: "1fr",
+        lg: "200px 1fr",
+      }}
+    >
+      <GridItem area="nav">Navbar</GridItem>
+      <Show when={isLarge}>
+        <GridItem area="aside" paddingX={5}>
+          Genre list
+        </GridItem>
+      </Show>
+      <GridItem area="main">Movie list</GridItem>
+    </Grid>
   );
 }
 
