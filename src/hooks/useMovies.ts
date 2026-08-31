@@ -4,7 +4,7 @@ export interface Movie {
   adult: boolean;
   poster_path: string;
   id: number;
-  release_date: Date;
+  release_date: string;
   title: string;
   vote_average: number;
 }
