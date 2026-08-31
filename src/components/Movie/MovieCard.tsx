@@ -49,7 +49,11 @@ const MovieCard = ({ movie }: Props) => {
         <Text color="gray.400" fontSize="sm">
           {movie.release_date?.slice(0, 4)}
         </Text>
-        {movie.adult && <Badge colorPalette="red">18+</Badge>}
+        {movie.adult && (
+          <Badge width={8} colorPalette="red">
+            18+
+          </Badge>
+        )}
       </Card.Body>
     </Card.Root>
   );
