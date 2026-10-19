@@ -1,9 +1,14 @@
 import useMovies from "@/hooks/useMovies";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import MovieCard from "./MovieCard";
+import type { MovieQuery } from "@/App";
 
-const MovieGrid = () => {
-  const { data, error, isLoading } = useMovies();
+interface Props {
+  movieQuery: MovieQuery;
+}
+
+const MovieGrid = ({ movieQuery }: Props) => {
+  const { data, error, isLoading } = useMovies(movieQuery);
 
   if (error) return <Text>{error}</Text>;
   if (isLoading) return <Text>Loading...</Text>;

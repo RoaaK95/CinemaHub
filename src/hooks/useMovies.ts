@@ -1,4 +1,6 @@
+import type { MovieQuery } from "@/App";
 import useData from "./useData";
+import { useMemo } from "react";
 
 export interface Movie {
   adult: boolean;
@@ -9,5 +11,19 @@ export interface Movie {
   vote_average: number;
 }
 
-const useMovies = () => useData<Movie>("/discover/movie");
+const useMovies = (movieQuery: MovieQuery) => {
+  const requestConfig = useMemo(
+    () => ({
+      params: {
+        with_genres: movieQuery.genre?.id,
+        sort_by: movieQuery.sortOrder || undefined,
+        with_text_query: movieQuery.searchText || undefined,
+      },
+    }),
+    [movieQuery.genre?.id, movieQuery.sortOrder, movieQuery.searchText],
+  );
+
+  return useData<Movie>("/discover/movie", requestConfig);
+};
+
 export default useMovies;
