@@ -1,8 +1,16 @@
-import { Grid, GridItem, Show, useBreakpointValue } from "@chakra-ui/react";
+import {
+  Box,
+  Flex,
+  Grid,
+  GridItem,
+  Show,
+  useBreakpointValue,
+} from "@chakra-ui/react";
 import MovieGrid from "./components/Movie/MovieGrid";
 import type { Genre } from "./hooks/useGenres";
 import { useState } from "react";
 import GenreList from "./components/GenreList";
+import MovieHeading from "./components/Movie/MovieHeading";
 
 export interface MovieQuery {
   genre: Genre | null;
@@ -35,6 +43,9 @@ function App() {
       </Show>
 
       <GridItem area="main">
+        <Box paddingLeft={2}>
+          <MovieHeading movieQuery={movieQuery} />
+        </Box>
         <MovieGrid movieQuery={movieQuery} />
       </GridItem>
     </Grid>
