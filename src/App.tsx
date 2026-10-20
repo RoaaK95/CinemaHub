@@ -11,6 +11,7 @@ import type { Genre } from "./hooks/useGenres";
 import { useState } from "react";
 import GenreList from "./components/GenreList";
 import MovieHeading from "./components/Movie/MovieHeading";
+import Navbar from "./components/Navbar";
 
 export interface MovieQuery {
   genre: Genre | null;
@@ -31,7 +32,13 @@ function App() {
         lg: "200px 1fr",
       }}
     >
-      <GridItem area="nav">Navbar</GridItem>
+      <GridItem area="nav">
+        <Navbar
+          onSearch={(searchText) =>
+            SetMovieQuery({ ...movieQuery, searchText })
+          }
+        />
+      </GridItem>
 
       <Show when={isLarge}>
         <GridItem area="aside" paddingX={5}>
