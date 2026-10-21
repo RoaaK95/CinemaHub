@@ -12,6 +12,7 @@ import { useState } from "react";
 import GenreList from "./components/GenreList";
 import MovieHeading from "./components/Movie/MovieHeading";
 import Navbar from "./components/Navbar";
+import SortSelector from "./components/SortSelector";
 
 export interface MovieQuery {
   genre: Genre | null;
@@ -52,6 +53,14 @@ function App() {
       <GridItem area="main">
         <Box paddingLeft={2}>
           <MovieHeading movieQuery={movieQuery} />
+          <Flex marginBottom={5}>
+            <SortSelector
+              sortOrder={movieQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                SetMovieQuery({ ...movieQuery, sortOrder })
+              }
+            />
+          </Flex>
         </Box>
         <MovieGrid movieQuery={movieQuery} />
       </GridItem>
