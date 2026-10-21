@@ -18,10 +18,18 @@ export interface MovieQuery {
   genre: Genre | null;
   sortOrder: string;
   searchText: string;
+  page: number;
 }
 function App() {
-  const [movieQuery, SetMovieQuery] = useState({} as MovieQuery);
+  const [movieQuery, SetMovieQuery] = useState<MovieQuery>({
+    genre: null,
+    sortOrder: "",
+    searchText: "",
+    page: 1,
+  });
+
   const isLarge = useBreakpointValue({ base: false, lg: true });
+
   return (
     <Grid
       templateAreas={{
@@ -36,7 +44,7 @@ function App() {
       <GridItem area="nav">
         <Navbar
           onSearch={(searchText) =>
-            SetMovieQuery({ ...movieQuery, searchText })
+            SetMovieQuery({ ...movieQuery, searchText, page: 1 })
           }
         />
       </GridItem>
@@ -57,12 +65,17 @@ function App() {
             <SortSelector
               sortOrder={movieQuery.sortOrder}
               onSelectSortOrder={(sortOrder) =>
-                SetMovieQuery({ ...movieQuery, sortOrder })
+                SetMovieQuery({ ...movieQuery, sortOrder, page: 1 })
               }
             />
           </Flex>
         </Box>
-        <MovieGrid movieQuery={movieQuery} />
+        <MovieGrid
+          movieQuery={movieQuery}
+          onPageChange={(page) =>
+            SetMovieQuery((query) => ({ ...query, page }))
+          }
+        />
       </GridItem>
     </Grid>
   );

@@ -4,13 +4,15 @@ import MovieCard from "./MovieCard";
 import type { MovieQuery } from "@/App";
 import MovieCardContainer from "./MovieCardContainer";
 import MovieCardSkeleton from "./MovieCardSkeleton";
+import Pagination from "./Pagination";
 
 interface Props {
   movieQuery: MovieQuery;
+  onPageChange: (page: number) => void;
 }
 
-const MovieGrid = ({ movieQuery }: Props) => {
-  const { data, error, isLoading } = useMovies(movieQuery);
+const MovieGrid = ({ movieQuery, onPageChange }: Props) => {
+  const { data, error, isLoading, totalPages } = useMovies(movieQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   if (error) return <Text>{error}</Text>;
@@ -37,6 +39,13 @@ const MovieGrid = ({ movieQuery }: Props) => {
           />
         ))}
       </SimpleGrid>
+
+      <Pagination
+        currentPage={movieQuery.page}
+        totalPages={totalPages}
+        isLoading={isLoading}
+        onPageChange={onPageChange}
+      />
     </>
   );
 };

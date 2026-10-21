@@ -1,21 +1,23 @@
-// hooks/useData.ts (Conceptual fix for handling TMDB genres vs movies)
 import { useEffect, useState } from "react";
 import apiClient from "../services/api-client";
 import { CanceledError, type AxiosRequestConfig } from "axios";
 
 interface FetchResponse<T> {
-  count?: number;
+  total_pages?: number;
   results?: T[];
   genres?: T[];
 }
 
+interface DataResponse<T> {
+  data: T[];
+  error: string;
+  totalPages: number;
+  endpoint: string;
+  requestConfig?: AxiosRequestConfig;
+}
+
 const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
-  const [response, setResponse] = useState<{
-    data: T[];
-    error: string;
-    endpoint: string;
-    requestConfig?: AxiosRequestConfig;
-  } | null>(null);
+  const [response, setResponse] = useState<DataResponse<T> | null>(null);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -26,19 +28,21 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
         signal: controller.signal,
       })
       .then((res) => {
-        const fetchedData = res.data.results ?? res.data.genres ?? [];
         setResponse({
-          data: fetchedData,
+          data: res.data.results ?? res.data.genres ?? [],
           error: "",
+          totalPages: res.data.total_pages ?? 1,
           endpoint,
           requestConfig,
         });
       })
-      .catch((err) => {
+      .catch((err: unknown) => {
         if (err instanceof CanceledError) return;
+
         setResponse({
           data: [],
           error: err instanceof Error ? err.message : String(err),
+          totalPages: 0,
           endpoint,
           requestConfig,
         });
@@ -54,6 +58,7 @@ const useData = <T>(endpoint: string, requestConfig?: AxiosRequestConfig) => {
     data: isCurrentResponse ? response.data : [],
     error: isCurrentResponse ? response.error : "",
     isLoading: !isCurrentResponse,
+    totalPages: isCurrentResponse ? response.totalPages : 0,
   };
 };
 

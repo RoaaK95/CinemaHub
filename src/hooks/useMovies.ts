@@ -18,9 +18,15 @@ const useMovies = (movieQuery: MovieQuery) => {
         with_genres: movieQuery.genre?.id,
         sort_by: movieQuery.sortOrder || undefined,
         with_text_query: movieQuery.searchText || undefined,
+        page: movieQuery.page,
       },
     }),
-    [movieQuery.genre?.id, movieQuery.sortOrder, movieQuery.searchText],
+    [
+      movieQuery.genre?.id,
+      movieQuery.sortOrder,
+      movieQuery.searchText,
+      movieQuery.page,
+    ],
   );
 
   return useData<Movie>("/discover/movie", requestConfig);
