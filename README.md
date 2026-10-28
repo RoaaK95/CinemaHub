@@ -1,3 +1,4 @@
 # CinemaHub
 
-React, TypeScript project
+React, TypeScript project  
+Old: axios ver
