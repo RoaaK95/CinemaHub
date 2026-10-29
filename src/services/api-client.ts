@@ -1,5 +1,11 @@
 import axios from "axios";
 
+export interface FetchResponse<T> {
+  total_pages?: number;
+  results?: T[];
+  genres?: T[];
+}
+
 const apiClient = axios.create({
   baseURL: "https://api.themoviedb.org/3",
   headers: {
