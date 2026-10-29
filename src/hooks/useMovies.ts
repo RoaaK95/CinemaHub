@@ -2,6 +2,7 @@ import type { MovieQuery } from "@/App";
 import type { Movie } from "@/entities/Movie";
 import APIClient from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
+import ms from "ms";
 
 export interface MovieResponse<T> {
   page: number;
@@ -30,6 +31,7 @@ const useMovies = (movieQuery: MovieQuery) => {
         ? lastPage.page + 1
         : undefined;
     },
+    staleTime: ms("5m"),
   });
 };
 export default useMovies;
