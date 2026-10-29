@@ -1,5 +1,5 @@
 import type { MovieQuery } from "@/App";
-import APIClient, { type FetchResponse } from "@/services/api-client";
+import APIClient from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
 export interface Movie {
@@ -10,11 +10,17 @@ export interface Movie {
   title: string;
   vote_average: number;
 }
-
-const apiClient = new APIClient<Movie>("/discover/movie");
+export interface MovieResponse<T> {
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: T[];
+  genres?: T[];
+}
+const apiClient = new APIClient<MovieResponse<Movie>>("/discover/movie");
 
 const useMovies = (movieQuery: MovieQuery) => {
-  return useInfiniteQuery<FetchResponse<Movie>, Error>({
+  return useInfiniteQuery<MovieResponse<Movie>, Error>({
     queryKey: ["movies", movieQuery],
     initialPageParam: 1,
     queryFn: ({ pageParam }) =>
