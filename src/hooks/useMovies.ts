@@ -1,15 +1,8 @@
 import type { MovieQuery } from "@/App";
+import type { Movie } from "@/entities/Movie";
 import APIClient from "@/services/api-client";
 import { useInfiniteQuery } from "@tanstack/react-query";
 
-export interface Movie {
-  adult: boolean;
-  poster_path: string | null;
-  id: number;
-  release_date: string;
-  title: string;
-  vote_average: number;
-}
 export interface MovieResponse<T> {
   page: number;
   total_pages: number;

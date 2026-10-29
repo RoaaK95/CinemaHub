@@ -1,11 +1,8 @@
 import genre from "@/data/genre";
+import type { Genre } from "@/entities/Genre";
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 
-export interface Genre {
-  id: number;
-  name: string;
-}
 export interface GenreResponse {
   genres: Genre[];
 }

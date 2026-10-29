@@ -1,6 +1,6 @@
-import type { Movie } from "@/hooks/useMovies";
+import type { Movie } from "@/entities/Movie";
 import { getImageUrl } from "@/services/image-url";
-import { Box, Card, Image, Text, Heading, Badge } from "@chakra-ui/react";
+import { Badge, Box, Card, Heading, Image, Text } from "@chakra-ui/react";
 
 interface Props {
   movie: Movie;

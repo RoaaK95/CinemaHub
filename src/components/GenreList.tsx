@@ -1,5 +1,5 @@
+import type { Genre } from "@/entities/Genre";
 import { Button, Heading, List, Spinner, VStack } from "@chakra-ui/react";
-import type { Genre } from "../hooks/useGenres";
 import useGenres from "../hooks/useGenres";
 
 interface Props {
