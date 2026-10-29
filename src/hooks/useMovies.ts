@@ -1,5 +1,5 @@
 import type { MovieQuery } from "@/App";
-import apiClient, { type FetchResponse } from "@/services/api-client";
+import APIClient, { type FetchResponse } from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 
 export interface Movie {
@@ -11,19 +11,18 @@ export interface Movie {
   vote_average: number;
 }
 
+const apiClient = new APIClient<Movie>("/discover/movie");
 const useMovies = (movieQuery: MovieQuery) =>
   useQuery<FetchResponse<Movie>, Error>({
     queryKey: ["movies", movieQuery],
     queryFn: () =>
-      apiClient
-        .get<FetchResponse<Movie>>("/discover/movie", {
-          params: {
-            with_genres: movieQuery.genre?.id,
-            sort_by: movieQuery.sortOrder || undefined,
-            with_text_query: movieQuery.searchText || undefined,
-            page: movieQuery.page,
-          },
-        })
-        .then((res) => res.data),
+      apiClient.getAll({
+        params: {
+          with_genres: movieQuery.genre?.id,
+          sort_by: movieQuery.sortOrder || undefined,
+          with_text_query: movieQuery.searchText || undefined,
+          page: movieQuery.page,
+        },
+      }),
   });
 export default useMovies;
