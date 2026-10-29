@@ -4,10 +4,10 @@ import useGenres from "../hooks/useGenres";
 
 interface Props {
   onSelectGenre: (genre: Genre) => void;
-  selectedGenre: Genre | null;
+  selectedGenreId: number | undefined;
 }
 
-function GenreList({ selectedGenre, onSelectGenre }: Props) {
+function GenreList({ selectedGenreId, onSelectGenre }: Props) {
   const { data, isLoading, error } = useGenres();
 
   if (error) return null;
@@ -33,7 +33,7 @@ function GenreList({ selectedGenre, onSelectGenre }: Props) {
 
       <List.Root listStyle="none" gap={1}>
         {data?.genres?.map((genre) => {
-          const isSelected = genre.id === selectedGenre?.id;
+          const isSelected = genre.id === selectedGenreId;
 
           return (
             <List.Item key={genre.id}>

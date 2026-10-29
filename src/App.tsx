@@ -12,16 +12,15 @@ import MovieGrid from "./components/Movie/MovieGrid";
 import MovieHeading from "./components/Movie/MovieHeading";
 import Navbar from "./components/Navbar";
 import SortSelector from "./components/SortSelector";
-import type { Genre } from "./hooks/useGenres";
 
 export interface MovieQuery {
-  genre: Genre | null;
+  genreId: number | undefined;
   sortOrder: string;
   searchText: string;
 }
 function App() {
   const [movieQuery, SetMovieQuery] = useState<MovieQuery>({
-    genre: null,
+    genreId: undefined,
     sortOrder: "",
     searchText: "",
   });
@@ -50,8 +49,10 @@ function App() {
       <Show when={isLarge}>
         <GridItem area="aside" paddingX={5}>
           <GenreList
-            selectedGenre={movieQuery.genre}
-            onSelectGenre={(genre) => SetMovieQuery({ ...movieQuery, genre })}
+            selectedGenreId={movieQuery.genreId}
+            onSelectGenre={(genre) =>
+              SetMovieQuery({ ...movieQuery, genreId: genre.id })
+            }
           />
         </GridItem>
       </Show>
