@@ -44,7 +44,7 @@ function App() {
       <GridItem area="nav">
         <Navbar
           onSearch={(searchText) =>
-            SetMovieQuery({ ...movieQuery, searchText, page: 1 })
+            SetMovieQuery({ ...movieQuery, searchText })
           }
         />
       </GridItem>
@@ -65,7 +65,7 @@ function App() {
             <SortSelector
               sortOrder={movieQuery.sortOrder}
               onSelectSortOrder={(sortOrder) =>
-                SetMovieQuery({ ...movieQuery, sortOrder, page: 1 })
+                SetMovieQuery({ ...movieQuery, sortOrder })
               }
             />
           </Flex>
