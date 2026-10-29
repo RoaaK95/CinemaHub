@@ -14,7 +14,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
   const { data, error, isLoading } = useMovies(movieQuery);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
-  if (error) return <Text>{error}</Text>;
+  if (error) return <Text>{error.message}</Text>;
 
   return (
     <>
@@ -31,7 +31,7 @@ const MovieGrid = ({ movieQuery }: Props) => {
             />
           ))}
 
-        {data?.map((movie) => (
+        {data?.results?.map((movie) => (
           <MovieCardContainer
             key={movie.id}
             childern={<MovieCard movie={movie} />}
