@@ -32,7 +32,7 @@ function GenreList({ selectedGenre, onSelectGenre }: Props) {
       </Heading>
 
       <List.Root listStyle="none" gap={1}>
-        {data.map((genre) => {
+        {data?.genres?.map((genre) => {
           const isSelected = genre.id === selectedGenre?.id;
 
           return (
