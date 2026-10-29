@@ -1,8 +1,10 @@
 import axios, { type AxiosRequestConfig } from "axios";
 
 export interface FetchResponse<T> {
-  total_pages?: number;
-  results?: T[];
+  page: number;
+  total_pages: number;
+  total_results: number;
+  results: T[];
   genres?: T[];
 }
 

@@ -6,26 +6,24 @@ import {
   Show,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import MovieGrid from "./components/Movie/MovieGrid";
-import type { Genre } from "./hooks/useGenres";
 import { useState } from "react";
 import GenreList from "./components/GenreList";
+import MovieGrid from "./components/Movie/MovieGrid";
 import MovieHeading from "./components/Movie/MovieHeading";
 import Navbar from "./components/Navbar";
 import SortSelector from "./components/SortSelector";
+import type { Genre } from "./hooks/useGenres";
 
 export interface MovieQuery {
   genre: Genre | null;
   sortOrder: string;
   searchText: string;
-  page: number;
 }
 function App() {
   const [movieQuery, SetMovieQuery] = useState<MovieQuery>({
     genre: null,
     sortOrder: "",
     searchText: "",
-    page: 1,
   });
 
   const isLarge = useBreakpointValue({ base: false, lg: true });
@@ -70,12 +68,7 @@ function App() {
             />
           </Flex>
         </Box>
-        <MovieGrid
-          movieQuery={movieQuery}
-          onPageChange={(page) =>
-            SetMovieQuery((query) => ({ ...query, page }))
-          }
-        />
+        <MovieGrid movieQuery={movieQuery} />
       </GridItem>
     </Grid>
   );
