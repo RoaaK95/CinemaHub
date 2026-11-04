@@ -14,7 +14,7 @@ I built **CinemaHub** because I wanted a lightning-fast, distraction-free interf
 
 ## Technical Architecture & Highlights
 
-- **Server-State Management (TanStack Query):** Handles all asynchronous data fetching, automatic background refetching, and intelligent caching. Movie queries are strictly typed and keyed by active filter parameters.
+- **State Management (Zustand & TanStack Query):** Zustand manages client-side movie filters (search text, genre, and sort order). TanStack Query handles asynchronous data fetching, background refetching, and caching, with movie queries keyed by the active filters.
 - **Modular API Layer:** Built using a centralized Axios client dedicated to TMDB endpoints, keeping data-fetching logic cleanly decoupled from presentation components through custom React hooks.
 - **Responsive Design (Chakra UI):** Employs Chakra’s style props and layout primitives to build a fluid, adaptive grid that scales gracefully from mobile viewports to ultra-wide displays.
 - **Type Safety:** Written completely in strict TypeScript, establishing clear contracts for movie entities, genres, and API response payloads.
@@ -25,7 +25,7 @@ I built **CinemaHub** because I wanted a lightning-fast, distraction-free interf
 | -------------------- | ---------------------------------------------------------------------- |
 | **Core**             | React 19, TypeScript                                                   |
 | **Build Tool**       | Vite                                                                   |
-| **State & Fetching** | TanStack Query, Axios                                                  |
+| **State & Fetching** | Zustand, TanStack Query, Axios                                         |
 | **UI & Styling**     | Chakra UI, React Icons                                                 |
 | **Interactions**     | React Infinite Scroll Component                                        |
 | **Data Provider**    | [The Movie Database (TMDB) API](https://developer.themoviedb.org/docs) |
@@ -63,9 +63,10 @@ src/
 ├── components/     # Layout wrappers, filter controls, and movie grid cards
 ├── data/           # Local fallback constants (e.g., fallback genres)
 ├── entities/       # TypeScript interfaces and type definitions
-├── hooks/          # Custom TanStack Query hooks for fetching movies and genres
+├── hooks/          # TanStack Query hooks for fetching movies and genres
 ├── services/       # Axios client configuration and URL helper utilities
-└── App.tsx         # Root component managing filter state and layout composition
+├── store.ts        # Zustand store for movie search, genre, and sort filters
+└── App.tsx         # Root component composing the application layout
 ```
 
 ## TMDB Attribution
