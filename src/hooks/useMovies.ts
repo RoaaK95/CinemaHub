@@ -1,6 +1,6 @@
-import type { MovieQuery } from "@/App";
 import type { Movie } from "@/entities/Movie";
 import APIClient from "@/services/api-client";
+import useMovieQueryStore from "@/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import ms from "ms";
 
@@ -13,7 +13,8 @@ export interface MovieResponse<T> {
 }
 const apiClient = new APIClient<MovieResponse<Movie>>("/discover/movie");
 
-const useMovies = (movieQuery: MovieQuery) => {
+const useMovies = () => {
+  const movieQuery = useMovieQueryStore((s) => s.movieQuery);
   return useInfiniteQuery<MovieResponse<Movie>, Error>({
     queryKey: ["movies", movieQuery],
     initialPageParam: 1,

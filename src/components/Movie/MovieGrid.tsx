@@ -1,4 +1,3 @@
-import type { MovieQuery } from "@/App";
 import useMovies from "@/hooks/useMovies";
 import { SimpleGrid, Spinner, Text } from "@chakra-ui/react";
 import React from "react";
@@ -7,13 +6,8 @@ import MovieCard from "./MovieCard";
 import MovieCardContainer from "./MovieCardContainer";
 import MovieCardSkeleton from "./MovieCardSkeleton";
 
-interface Props {
-  movieQuery: MovieQuery;
-}
-
-const MovieGrid = ({ movieQuery }: Props) => {
-  const { data, error, isLoading, fetchNextPage, hasNextPage } =
-    useMovies(movieQuery);
+const MovieGrid = () => {
+  const { data, error, isLoading, fetchNextPage, hasNextPage } = useMovies();
   const skeletons = [1, 2, 3, 4, 5, 6];
   const fetchedMoviesCount =
     data?.pages.reduce((acc, page) => acc + page.results.length, 0) || 0;

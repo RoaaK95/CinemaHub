@@ -1,15 +1,11 @@
-import type { Genre } from "@/entities/Genre";
+import useMovieQueryStore from "@/store";
 import { Button, Heading, List, Spinner, VStack } from "@chakra-ui/react";
 import useGenres from "../hooks/useGenres";
 
-interface Props {
-  onSelectGenre: (genre: Genre) => void;
-  selectedGenreId: number | undefined;
-}
-
-function GenreList({ selectedGenreId, onSelectGenre }: Props) {
+function GenreList() {
   const { data, isLoading, error } = useGenres();
-
+  const selectedGenreId = useMovieQueryStore((s) => s.movieQuery.genreId);
+  const setSelectedGenreId = useMovieQueryStore((s) => s.setGenreId);
   if (error) return null;
 
   if (isLoading) {
@@ -53,7 +49,7 @@ function GenreList({ selectedGenreId, onSelectGenre }: Props) {
                   background: "bg.subtle",
                   color: "fg",
                 }}
-                onClick={() => onSelectGenre(genre)}
+                onClick={() => setSelectedGenreId(genre.id)}
               >
                 {genre.name}
               </Button>

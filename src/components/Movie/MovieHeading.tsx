@@ -1,12 +1,9 @@
 import useGenre from "@/hooks/useGenre";
+import useMovieQueryStore from "@/store";
 import { Heading } from "@chakra-ui/react";
-import type { MovieQuery } from "../../App";
 
-interface Props {
-  movieQuery: MovieQuery;
-}
-
-const MovieHeading = ({ movieQuery }: Props) => {
+const MovieHeading = () => {
+  const movieQuery = useMovieQueryStore((s) => s.movieQuery);
   const genre = useGenre(movieQuery.genreId);
   const heading = `${genre?.name || ""} Movies`;
   return (
