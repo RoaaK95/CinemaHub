@@ -33,7 +33,7 @@ const MovieCard = ({ movie }: Props) => {
       </Box>
 
       <Card.Body gap={2}>
-        <Heading fontSize="lg" lineHeight="short" lineClamp={2}>
+        <Heading fontSize="lg" lineHeight="short" lineClamp={2} color="white">
           <Link to={`/movies/` + movie.id}> {movie.title}</Link>
         </Heading>
 
