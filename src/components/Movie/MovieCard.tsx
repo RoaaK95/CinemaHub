@@ -2,6 +2,7 @@ import type { Movie } from "@/entities/Movie";
 import { getImageUrl } from "@/services/image-url";
 import { Badge, Box, Card, Heading, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";
+import CriticScore from "./CriticScore";
 
 interface Props {
   movie: Movie;
@@ -23,18 +24,12 @@ const MovieCard = ({ movie }: Props) => {
           objectFit="cover"
         />
 
-        <Badge
+        <CriticScore
+          score={movie.vote_average}
           position="absolute"
           top={2}
           right={2}
-          colorPalette="yellow"
-          fontSize="sm"
-          px={2}
-          py={1}
-          borderRadius="md"
-        >
-          {movie.vote_average.toFixed(1)}
-        </Badge>
+        />
       </Box>
 
       <Card.Body gap={2}>

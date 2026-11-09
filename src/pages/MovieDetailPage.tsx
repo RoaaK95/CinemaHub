@@ -1,4 +1,5 @@
 import ExpandableText from "@/components/ExpandableText";
+import MovieAttributes from "@/components/Movie/MovieAttributes";
 import useMovie from "@/hooks/useMovie";
 import { Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
@@ -16,6 +17,7 @@ const MovieDetailPage = () => {
     <>
       <Heading>{movie?.title}</Heading>
       <ExpandableText>{movie.overview}</ExpandableText>
+      <MovieAttributes movie={movie} />
     </>
   );
 };
