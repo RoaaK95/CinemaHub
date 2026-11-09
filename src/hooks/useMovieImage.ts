@@ -1,4 +1,4 @@
-import type { MovieImage } from "@/entities/MovieImage";
+import type MovieImage from "@/entities/MovieImage";
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 interface MovieImagesResponse {

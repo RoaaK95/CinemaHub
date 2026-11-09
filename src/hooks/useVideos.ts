@@ -1,4 +1,4 @@
-import type { Video } from "@/entities/Video";
+import type Video from "@/entities/Video";
 import APIClient from "@/services/api-client";
 import { useQuery } from "@tanstack/react-query";
 

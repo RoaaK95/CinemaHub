@@ -1,4 +1,4 @@
-import type { Movie } from "@/entities/Movie";
+import type Movie from "@/entities/Movie";
 import DefinitionItem from "../DefinitionItem";
 import CriticScore from "./CriticScore";
 import { SimpleGrid, Text } from "@chakra-ui/react";

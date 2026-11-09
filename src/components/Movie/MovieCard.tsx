@@ -1,4 +1,4 @@
-import type { Movie } from "@/entities/Movie";
+import type Movie from "@/entities/Movie";
 import { getImageUrl } from "@/services/image-url";
 import { Badge, Box, Card, Heading, Image, Text } from "@chakra-ui/react";
 import { Link } from "react-router-dom";

@@ -1,7 +1,7 @@
-import type { ProductionCompanies } from "./ProductionCompanies";
-import type { Genre } from "./Genre";
+import type ProductionCompanies from "./ProductionCompanies";
+import type Genre from "./Genre";
 
-export interface Movie {
+export default interface Movie {
   adult: boolean;
   poster_path: string | null;
   id: number;

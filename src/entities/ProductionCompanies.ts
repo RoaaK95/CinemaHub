@@ -1,4 +1,4 @@
-export interface ProductionCompanies {
+export default interface ProductionCompanies {
   id: number;
   name: string;
 }

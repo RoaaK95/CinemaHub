@@ -1,4 +1,4 @@
-import type { Movie } from "@/entities/Movie";
+import type Movie from "@/entities/Movie";
 import APIClient from "@/services/api-client";
 import useMovieQueryStore from "@/store";
 import { useInfiniteQuery } from "@tanstack/react-query";
