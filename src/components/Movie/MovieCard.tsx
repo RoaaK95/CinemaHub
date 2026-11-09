@@ -1,6 +1,7 @@
 import type { Movie } from "@/entities/Movie";
 import { getImageUrl } from "@/services/image-url";
 import { Badge, Box, Card, Heading, Image, Text } from "@chakra-ui/react";
+import { Link } from "react-router-dom";
 
 interface Props {
   movie: Movie;
@@ -12,11 +13,6 @@ const MovieCard = ({ movie }: Props) => {
       overflow="hidden"
       borderRadius="lg"
       bg="gray.900"
-      transition="transform 0.2s, box-shadow 0.2s"
-      _hover={{
-        transform: "scale(1.03)",
-        boxShadow: "xl",
-      }}
       cursor="pointer"
     >
       <Box position="relative">
@@ -43,7 +39,7 @@ const MovieCard = ({ movie }: Props) => {
 
       <Card.Body gap={2}>
         <Heading fontSize="lg" lineHeight="short" lineClamp={2}>
-          {movie.title}
+          <Link to={`/movies/` + movie.id}> {movie.title}</Link>
         </Heading>
 
         <Text color="gray.400" fontSize="sm">
