@@ -1,6 +1,6 @@
+import ExpandableText from "@/components/ExpandableText";
 import useMovie from "@/hooks/useMovie";
-import { Heading, Spinner, Text } from "@chakra-ui/react";
-import React from "react";
+import { Heading, Spinner } from "@chakra-ui/react";
 import { useParams } from "react-router-dom";
 
 const MovieDetailPage = () => {
@@ -15,7 +15,7 @@ const MovieDetailPage = () => {
   return (
     <>
       <Heading>{movie?.title}</Heading>
-      <Text>{movie.overview}</Text>
+      <ExpandableText>{movie.overview}</ExpandableText>
     </>
   );
 };
