@@ -1,3 +1,7 @@
+import GenreList from "@/components/GenreList";
+import MovieGrid from "@/components/Movie/MovieGrid";
+import MovieHeading from "@/components/Movie/MovieHeading";
+import SortSelector from "@/components/SortSelector";
 import {
   Box,
   Flex,
@@ -6,30 +10,21 @@ import {
   Show,
   useBreakpointValue,
 } from "@chakra-ui/react";
-import GenreList from "./components/GenreList";
-import MovieGrid from "./components/Movie/MovieGrid";
-import MovieHeading from "./components/Movie/MovieHeading";
-import Navbar from "./components/Navbar";
-import SortSelector from "./components/SortSelector";
 
-function App() {
+const Homepage = () => {
   const isLarge = useBreakpointValue({ base: false, lg: true });
 
   return (
     <Grid
       templateAreas={{
-        base: `"nav" "main"`,
-        lg: `"nav nav" "aside main"`,
+        base: `"main"`,
+        lg: ` "aside main"`,
       }}
       templateColumns={{
         base: "1fr",
         lg: "200px 1fr",
       }}
     >
-      <GridItem area="nav">
-        <Navbar />
-      </GridItem>
-
       <Show when={isLarge}>
         <GridItem area="aside" paddingX={5}>
           <GenreList />
@@ -47,6 +42,6 @@ function App() {
       </GridItem>
     </Grid>
   );
-}
+};
 
-export default App;
+export default Homepage;
