@@ -24,7 +24,7 @@ const SearchInput = () => {
           ref={ref}
           width="full"
           borderRadius={20}
-          placeholder="Search games..."
+          placeholder="Search movies..."
           variant="subtle"
         />
       </InputGroup>
