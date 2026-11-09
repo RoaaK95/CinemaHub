@@ -1,28 +1,46 @@
-import { Button, Text } from "@chakra-ui/react";
+import { Button, Text, Box } from "@chakra-ui/react";
 import { useState } from "react";
+import { LuChevronDown, LuChevronUp } from "react-icons/lu";
 
 interface Props {
   children: string;
 }
+
 const ExpandableText = ({ children }: Props) => {
   const [expanded, setExpanded] = useState(false);
   const limit = 200;
+
   if (!children) return null;
-  if (children.length <= limit) return <Text>{children}</Text>;
-  const summary = expanded ? children : children.substring(0, limit) + "...";
+
+  if (children.length <= limit) {
+    return <Text lineHeight="tall">{children}</Text>;
+  }
+
+  const summary = expanded
+    ? children
+    : children.substring(0, limit).trimEnd() + "...";
+
   return (
-    <Text>
-      {summary}
+    <Box>
+      <Text lineHeight="tall" color="fg.muted">
+        {summary}
+      </Text>
+
       <Button
-        marginLeft={1}
+        variant="outline"
+        colorPalette="yellow"
         size="xs"
-        fontWeight="bold"
-        colorScheme="yellow"
+        mt={3}
+        px={3}
+        borderRadius="full"
+        fontWeight="semibold"
         onClick={() => setExpanded(!expanded)}
+        aria-expanded={expanded}
       >
-        {expanded ? "Show Less" : "Show More"}
+        {expanded ? "Show less" : "Read more"}
+        {expanded ? <LuChevronUp /> : <LuChevronDown />}
       </Button>
-    </Text>
+    </Box>
   );
 };
 
